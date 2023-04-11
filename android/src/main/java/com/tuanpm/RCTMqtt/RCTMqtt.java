@@ -386,6 +386,24 @@ public class RCTMqtt implements MqttCallbackExtended {
         }
     }
 
+    /**
+     * @param topic
+     * @param payload
+     * @param qos
+     * @param retain
+     */
+    public void publishByte(@NonNull final String topic, @NonNull final byte[] payload, final int qos,
+            final boolean retain) {
+        try {
+            MqttMessage message = new MqttMessage(payload);
+            message.setQos(qos);
+            message.setRetained(retain);
+            client.publish(topic, message);
+        } catch (UnsupportedEncodingException | MqttException e) {
+            e.printStackTrace();
+        }
+    }
+
     /****************************************************************/
     /* Methods to implement the MqttCallback interface */
     /****************************************************************/

@@ -96,6 +96,16 @@ public class RCTMqttModule extends ReactContextBaseJavaModule
     }
 
     @ReactMethod
+    public void publishByte(@NonNull final String clientRef,
+                        @NonNull final String topic,
+                        @NonNull final byte[] payload,
+                        final int qos,
+                        final boolean retain)
+    {
+        clients.get(clientRef).publish(topic, payload, qos, retain);
+    }
+
+    @ReactMethod
     public void removeClient(@NonNull final String clientRef) {
         if (!clients.containsKey(clientRef))
         {

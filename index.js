@@ -46,6 +46,10 @@ MqttClient.prototype.publish = function(topic, payload, qos, retain) {
   Mqtt.publish(this.clientRef, topic, payload, qos, retain);
 }
 
+MqttClient.prototype.publishByte = function(topic, payload, qos, retain) {
+  Mqtt.publishByte(this.clientRef, topic, payload, qos, retain);
+}
+
 MqttClient.prototype.reconnect = function() {
   Mqtt.reconnect(this.clientRef);
 };

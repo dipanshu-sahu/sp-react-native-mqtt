@@ -48,6 +48,8 @@ export class IMqttClient {
 	reconnect(): void;
 
 	isConnected(): Promise<boolean>;
+
+	publishByte(topic: string, payload: any, qos: QoS, retain: boolean): void;
 }
 
 declare namespace mqtt {
