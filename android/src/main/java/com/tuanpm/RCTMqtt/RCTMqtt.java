@@ -395,11 +395,13 @@ public class RCTMqtt implements MqttCallbackExtended {
     public void publishByte(@NonNull final String topic, @NonNull final byte[] payload, final int qos,
             final boolean retain) {
         try {
+            Log.d("TAGTAG", topic+"_"+payload.toString());
             MqttMessage message = new MqttMessage(payload);
             message.setQos(qos);
             message.setRetained(retain);
             client.publish(topic, message);
         } catch (MqttException e) {
+            Log.d("TAGTAG", e.toString());
             e.printStackTrace();
         }
     }

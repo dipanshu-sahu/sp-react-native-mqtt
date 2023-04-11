@@ -102,6 +102,7 @@ public class RCTMqttModule extends ReactContextBaseJavaModule
                         final int qos,
                         final boolean retain)
     {
+        Log.d("TAGTAG_R", topic+"_"+payload.toString());
         clients.get(clientRef).publishByte(topic, payload, qos, retain);
     }
 
