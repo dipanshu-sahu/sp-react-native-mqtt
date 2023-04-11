@@ -102,7 +102,7 @@ public class RCTMqttModule extends ReactContextBaseJavaModule
                         final int qos,
                         final boolean retain)
     {
-        clients.get(clientRef).publish(topic, payload, qos, retain);
+        clients.get(clientRef).publishByte(topic, payload, qos, retain);
     }
 
     @ReactMethod
