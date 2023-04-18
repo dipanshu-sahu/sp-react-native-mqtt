@@ -393,7 +393,7 @@ public class RCTMqtt implements MqttCallbackExtended {
      * @param qos
      * @param retain
      */
-    public void publishByte(@NonNull final String topic, @NonNull final byte[] payload, final int qos,
+    public void publishByte(@NonNull final String topic, @NonNull final String payload, final int qos,
             final boolean retain) {
        try {
             Log.d("TAGTAG", topic+"_"+payload);
