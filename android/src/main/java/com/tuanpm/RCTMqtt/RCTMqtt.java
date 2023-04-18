@@ -37,6 +37,7 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import java.util.*;
 import javax.annotation.Nullable;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.X509TrustManager;
@@ -394,16 +395,23 @@ public class RCTMqtt implements MqttCallbackExtended {
      */
     public void publishByte(@NonNull final String topic, @NonNull final byte[] payload, final int qos,
             final boolean retain) {
-        try {
-            Log.d("TAGTAG", topic+"_"+payload.toString());
-            MqttMessage message = new MqttMessage(payload);
-            message.setQos(qos);
-            message.setRetained(retain);
-            client.publish(topic, message);
-        } catch (MqttException e) {
-            Log.d("TAGTAG", e.toString());
-            e.printStackTrace();
-        }
+       try {
+            Log.d("TAGTAG", topic+"_"+payload);
+            String[] arrOfStr = payload.split(",");
+            byte[] byteArr = new byte[arrOfStr.length];
+            for(int i = 0; i < arrOfStr.length; i++){
+                int con = Integer.parseInt(arrOfStr[i]);
+                byteArr[i] = (byte)con;
+            }
+            Log.d("TAGTAG", Arrays.toString(byteArr));
+             MqttMessage message = new MqttMessage(byteArr);
+             message.setQos(qos);
+             message.setRetained(retain);
+             client.publish(topic, message);
+       } catch (MqttException e) {
+           Log.d("TAGTAG", e.toString());
+           e.printStackTrace();
+       }
     }
 
     /****************************************************************/

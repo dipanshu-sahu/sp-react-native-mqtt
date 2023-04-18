@@ -98,11 +98,10 @@ public class RCTMqttModule extends ReactContextBaseJavaModule
     @ReactMethod
     public void publishByte(@NonNull final String clientRef,
                         @NonNull final String topic,
-                        @NonNull final byte[] payload,
+                        @NonNull final String payload,
                         final int qos,
                         final boolean retain)
     {
-        Log.d("TAGTAG_R", topic+"_"+payload.toString());
         clients.get(clientRef).publishByte(topic, payload, qos, retain);
     }
 
